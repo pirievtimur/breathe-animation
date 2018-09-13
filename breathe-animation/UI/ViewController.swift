@@ -22,8 +22,8 @@ class ViewController: UIViewController {
     }
     
     @objc func startBreathing() {
+        updateUI(state: .breathing)
         guideView.prepareToAnimate { [weak self] in
-            self?.updateUI(state: .breathing)
             self?.animationManager.startAnimations()
         }
     }

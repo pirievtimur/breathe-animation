@@ -43,6 +43,8 @@ class BreatheAnimator: NSObject, Animator {
             progress(breathePhase, progressValue)
         }
         
+        animatableView?.animatableLayer.backgroundColor = breathePhase.fillColor.cgColor
+        
         animation = CABasicAnimation(keyPath: "transform")
         animation?.duration = breathePhase.duration
         animation?.delegate = self

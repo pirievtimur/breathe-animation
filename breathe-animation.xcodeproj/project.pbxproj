@@ -19,6 +19,7 @@
 		71CAB1DA21499E5D005D8CEB /* BreatheGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CAB1D921499E5D005D8CEB /* BreatheGuideView.swift */; };
 		71CAB1DE2149A479005D8CEB /* AnimatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CAB1DD2149A479005D8CEB /* AnimatorManager.swift */; };
 		71CAB1E0214AA97F005D8CEB /* InstructionsLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CAB1DF214AA97F005D8CEB /* InstructionsLabel.swift */; };
+		71CAB1E3214AC84F005D8CEB /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CAB1E2214AC84F005D8CEB /* UIColor+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		71CAB1D921499E5D005D8CEB /* BreatheGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreatheGuideView.swift; sourceTree = "<group>"; };
 		71CAB1DD2149A479005D8CEB /* AnimatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatorManager.swift; sourceTree = "<group>"; };
 		71CAB1DF214AA97F005D8CEB /* InstructionsLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsLabel.swift; sourceTree = "<group>"; };
+		71CAB1E2214AC84F005D8CEB /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 		71A611EC21494C44004C28AD /* breathe-animation */ = {
 			isa = PBXGroup;
 			children = (
+				71CAB1E1214AC84F005D8CEB /* Utils */,
 				71CAB1DB2149A27B005D8CEB /* UI */,
 				71A6120621495384004C28AD /* Models */,
 				71A61205214952DB004C28AD /* Services */,
@@ -131,6 +134,14 @@
 				71CAB1DD2149A479005D8CEB /* AnimatorManager.swift */,
 			);
 			path = Animator;
+			sourceTree = "<group>";
+		};
+		71CAB1E1214AC84F005D8CEB /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				71CAB1E2214AC84F005D8CEB /* UIColor+Extensions.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,6 +223,7 @@
 				71A611EE21494C44004C28AD /* AppDelegate.swift in Sources */,
 				71CAB1DE2149A479005D8CEB /* AnimatorManager.swift in Sources */,
 				71A6120A214954D6004C28AD /* BreathePhase.swift in Sources */,
+				71CAB1E3214AC84F005D8CEB /* UIColor+Extensions.swift in Sources */,
 				71CAB1E0214AA97F005D8CEB /* InstructionsLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -20,6 +20,7 @@
 		71CAB1DE2149A479005D8CEB /* AnimatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CAB1DD2149A479005D8CEB /* AnimatorManager.swift */; };
 		71CAB1E0214AA97F005D8CEB /* InstructionsLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CAB1DF214AA97F005D8CEB /* InstructionsLabel.swift */; };
 		71CAB1E3214AC84F005D8CEB /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CAB1E2214AC84F005D8CEB /* UIColor+Extensions.swift */; };
+		71CAB1E5214ACBDA005D8CEB /* BreatheButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CAB1E4214ACBDA005D8CEB /* BreatheButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		71CAB1DD2149A479005D8CEB /* AnimatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatorManager.swift; sourceTree = "<group>"; };
 		71CAB1DF214AA97F005D8CEB /* InstructionsLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsLabel.swift; sourceTree = "<group>"; };
 		71CAB1E2214AC84F005D8CEB /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		71CAB1E4214ACBDA005D8CEB /* BreatheButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreatheButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 			children = (
 				71CAB1D921499E5D005D8CEB /* BreatheGuideView.swift */,
 				71CAB1DF214AA97F005D8CEB /* InstructionsLabel.swift */,
+				71CAB1E4214ACBDA005D8CEB /* BreatheButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 				71A611EE21494C44004C28AD /* AppDelegate.swift in Sources */,
 				71CAB1DE2149A479005D8CEB /* AnimatorManager.swift in Sources */,
 				71A6120A214954D6004C28AD /* BreathePhase.swift in Sources */,
+				71CAB1E5214ACBDA005D8CEB /* BreatheButton.swift in Sources */,
 				71CAB1E3214AC84F005D8CEB /* UIColor+Extensions.swift in Sources */,
 				71CAB1E0214AA97F005D8CEB /* InstructionsLabel.swift in Sources */,
 			);

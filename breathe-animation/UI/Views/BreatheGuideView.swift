@@ -8,15 +8,48 @@ class BreatheGuideView: UIView, BreatheAnimatable, ProgressLayerDelegate {
         return progressLayer
     }()
     
+    private var initialColor: UIColor {
+        return .blue
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .yellow
+        backgroundColor = initialColor
         layer.addSublayer(progressLayer)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func prepareToAnimate(completion: (() -> Void)? = nil) {
+        let animations = { [layer] in
+            layer.transform = CATransform3DMakeScale(0.75, 0.75, 1)
+        }
+        
+        let completionCallback = { (finished: Bool) in
+            guard let completion = completion, finished else { return }
+            completion()
+        }
+        
+        UIView.animate(withDuration: 2, animations: animations, completion: completionCallback)
+    }
+    
+    func restoreInitialState(completion: (() -> Void)? = nil) {
+        let animations = { [layer] in
+            layer.transform = CATransform3DIdentity
+        }
+        
+        let completionCallback = { [weak self] (finished: Bool) in
+            self?.backgroundColor = self?.initialColor
+            guard let completion = completion, finished else { return }
+            completion()
+        }
+        
+        UIView.animate(withDuration: 2, animations: animations, completion: completionCallback)
+    }
+    
+    // MARK: - BreatheAnimatable
     
     var progressCallback: ((Float) -> Void) = { _ in }
     
@@ -30,6 +63,8 @@ class BreatheGuideView: UIView, BreatheAnimatable, ProgressLayerDelegate {
     var animatableLayer: CALayer {
         return layer
     }
+    
+    // MARK: - ProgressLayerDelegate
     
     func progressUpdated(progress: Float) {
         progressCallback(progress)

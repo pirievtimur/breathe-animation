@@ -13,9 +13,11 @@
 		71A611F521494C45004C28AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71A611F421494C45004C28AD /* Assets.xcassets */; };
 		71A611F821494C45004C28AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71A611F621494C45004C28AD /* LaunchScreen.storyboard */; };
 		71A6120121494FE3004C28AD /* phases.json in Resources */ = {isa = PBXBuildFile; fileRef = 71A6120021494FE3004C28AD /* phases.json */; };
-		71A612082149539D004C28AD /* BreatheType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A612072149539D004C28AD /* BreatheType.swift */; };
 		71A6120A214954D6004C28AD /* BreathePhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A61209214954D6004C28AD /* BreathePhase.swift */; };
 		71A6120C21495771004C28AD /* BreathePhasesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A6120B21495771004C28AD /* BreathePhasesProvider.swift */; };
+		71CAB1D721496B6D005D8CEB /* BreatheAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CAB1D621496B6D005D8CEB /* BreatheAnimator.swift */; };
+		71CAB1DA21499E5D005D8CEB /* BreatheGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CAB1D921499E5D005D8CEB /* BreatheGuideView.swift */; };
+		71CAB1DE2149A479005D8CEB /* AnimatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CAB1DD2149A479005D8CEB /* AnimatorManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,9 +29,11 @@
 		71A611F721494C45004C28AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		71A611F921494C45004C28AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71A6120021494FE3004C28AD /* phases.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = phases.json; sourceTree = "<group>"; };
-		71A612072149539D004C28AD /* BreatheType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreatheType.swift; sourceTree = "<group>"; };
 		71A61209214954D6004C28AD /* BreathePhase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathePhase.swift; sourceTree = "<group>"; };
 		71A6120B21495771004C28AD /* BreathePhasesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathePhasesProvider.swift; sourceTree = "<group>"; };
+		71CAB1D621496B6D005D8CEB /* BreatheAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreatheAnimator.swift; sourceTree = "<group>"; };
+		71CAB1D921499E5D005D8CEB /* BreatheGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreatheGuideView.swift; sourceTree = "<group>"; };
+		71CAB1DD2149A479005D8CEB /* AnimatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatorManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,11 +66,11 @@
 		71A611EC21494C44004C28AD /* breathe-animation */ = {
 			isa = PBXGroup;
 			children = (
+				71CAB1DB2149A27B005D8CEB /* UI */,
 				71A6120621495384004C28AD /* Models */,
 				71A61205214952DB004C28AD /* Services */,
 				71A611FF21494FDA004C28AD /* Resources */,
 				71A611ED21494C44004C28AD /* AppDelegate.swift */,
-				71A611EF21494C44004C28AD /* ViewController.swift */,
 				71A611F121494C44004C28AD /* Main.storyboard */,
 				71A611F421494C45004C28AD /* Assets.xcassets */,
 				71A611F621494C45004C28AD /* LaunchScreen.storyboard */,
@@ -94,10 +98,36 @@
 		71A6120621495384004C28AD /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				71A612072149539D004C28AD /* BreatheType.swift */,
 				71A61209214954D6004C28AD /* BreathePhase.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		71CAB1D821499E44005D8CEB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				71CAB1D921499E5D005D8CEB /* BreatheGuideView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		71CAB1DB2149A27B005D8CEB /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				71CAB1DC2149A291005D8CEB /* Animator */,
+				71CAB1D821499E44005D8CEB /* Views */,
+				71A611EF21494C44004C28AD /* ViewController.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		71CAB1DC2149A291005D8CEB /* Animator */ = {
+			isa = PBXGroup;
+			children = (
+				71CAB1D621496B6D005D8CEB /* BreatheAnimator.swift */,
+				71CAB1DD2149A479005D8CEB /* AnimatorManager.swift */,
+			);
+			path = Animator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -172,10 +202,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71CAB1D721496B6D005D8CEB /* BreatheAnimator.swift in Sources */,
 				71A6120C21495771004C28AD /* BreathePhasesProvider.swift in Sources */,
 				71A611F021494C44004C28AD /* ViewController.swift in Sources */,
-				71A612082149539D004C28AD /* BreatheType.swift in Sources */,
+				71CAB1DA21499E5D005D8CEB /* BreatheGuideView.swift in Sources */,
 				71A611EE21494C44004C28AD /* AppDelegate.swift in Sources */,
+				71CAB1DE2149A479005D8CEB /* AnimatorManager.swift in Sources */,
 				71A6120A214954D6004C28AD /* BreathePhase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

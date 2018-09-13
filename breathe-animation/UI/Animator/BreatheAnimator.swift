@@ -1,9 +1,9 @@
 import UIKit
 
-protocol BreatheAnimatableView {
-    var scalableView: UIView { get }
-    
-    func updateTitle(type: BreatheType, seconds: Double)
+protocol BreatheAnimatable: class {
+    func performAnimation(animation: CAAnimation)
+    var animatableLayer: CALayer { get }
+    var progressCallback: ((Float) -> Void)? { get set }
 }
 
 protocol Animator: class {
@@ -14,15 +14,17 @@ protocol Animator: class {
 class BreatheAnimator: NSObject, Animator {
     
     var completionHandler: (() -> Void)?
+    var animationProgress: ((BreathePhase, Float) -> Void)?
     
-    private let animatableView: BreatheAnimatableView
+    private weak var animatableView: BreatheAnimatable?
     private let breathePhase: BreathePhase
-    
+
     private var animation: CABasicAnimation?
     private var toValue: CATransform3D?
     
-    init(animatableView: BreatheAnimatableView,
-         breathePhase: BreathePhase) {
+    init(animatableView: BreatheAnimatable,
+         breathePhase: BreathePhase,
+         progress: ((BreathePhase, Float) -> Void)? = nil) {
         self.animatableView = animatableView
         self.breathePhase = breathePhase
     }
@@ -31,8 +33,7 @@ class BreatheAnimator: NSObject, Animator {
         animation = CABasicAnimation(keyPath: "transform")
         animation?.duration = breathePhase.duration
         animation?.delegate = self
-        animation?.beginTime = CACurrentMediaTime() + 1
-        animation?.fromValue = animatableView.scalableView.layer.transform
+        animation?.fromValue = animatableView?.animatableLayer.transform
 
         switch breathePhase.type {
         case .inhale:
@@ -40,19 +41,20 @@ class BreatheAnimator: NSObject, Animator {
         case .exhale:
             toValue = CATransform3DMakeScale(0.5, 0.5, 1)
         case .hold:
-            toValue = animatableView.scalableView.layer.transform
+            toValue = animatableView?.animatableLayer.transform
         }
-        
+
         animation?.toValue = toValue
         
-        animatableView.scalableView.layer.add(animation!, forKey: "some")
+        animatableView?.performAnimation(animation: animation!)
     }
 }
 
 extension BreatheAnimator: CAAnimationDelegate {
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        
         if let transform = toValue, let handler = completionHandler {
-            animatableView.scalableView.layer.transform = transform
+            animatableView?.animatableLayer.transform = transform
             handler()
         }
     }

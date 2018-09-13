@@ -21,8 +21,10 @@ class ViewController: UIViewController {
     private func setupSubviews() {
         view.addSubview(guideView)
     }
-    
-    private func createGuideView() -> BreatheGuideView {
+}
+
+private extension ViewController {
+    func createGuideView() -> BreatheGuideView {
         let rect = CGRect(x: 0, y: 0, width: 200, height: 200)
         let guideView = BreatheGuideView(frame: rect)
         guideView.center = view.center
@@ -31,11 +33,20 @@ class ViewController: UIViewController {
         return guideView
     }
     
-    private func createAnimationManager() -> AnimatorManager {
+    func createAnimationManager() -> AnimatorManager {
         let phases = BreathePhasesProvider().phases() ?? []
-        let animators = phases.map { BreatheAnimator(animatableView: guideView, breathePhase: $0) }
-        return AnimatorManager(animators: animators) { [view = guideView] in
+        
+        let completion = { [view = guideView] in
             view.layer.transform = CATransform3DMakeScale(0.75, 0.75, 1)
         }
+        
+        let progress = { (type: BreathePhase, progress: Float) in
+            
+        }
+        
+        return AnimatorManager(phases: phases,
+                               animatableView: guideView,
+                               completion: completion,
+                               progress: progress)
     }
 }

@@ -1,9 +1,18 @@
 class AnimatorManager {
+    
     private var animatorsChain: [Animator] = []
     private var completion: (() -> Void)? = nil
     
-    init(animators: [Animator], completion: (() -> Void)? = nil) {
+    
+    init(phases: [BreathePhase],
+         animatableView: BreatheAnimatable,
+         completion: (() -> Void)? = nil,
+         progress: ((BreathePhase, Float) -> Void)? = nil) {
         self.completion = completion
+        
+        let animators = phases.map { BreatheAnimator(animatableView: animatableView,
+                                                     breathePhase: $0,
+                                                     progress: progress) }
         
         animators.forEach { [weak self] animator in
             if let last = self?.animatorsChain.last {

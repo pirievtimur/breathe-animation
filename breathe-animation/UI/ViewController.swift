@@ -5,6 +5,7 @@ class ViewController: UIViewController {
     
     private lazy var guideView = createGuideView()
     private lazy var animationManager = createAnimationManager()
+    private lazy var instructionsLabel = createInstructionsLabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,7 @@ class ViewController: UIViewController {
     
     private func setupSubviews() {
         view.addSubview(guideView)
+        view.addSubview(instructionsLabel)
     }
 }
 
@@ -33,6 +35,14 @@ private extension ViewController {
         return guideView
     }
     
+    func createInstructionsLabel() -> InstructionsLabel {
+        let frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+        let label = InstructionsLabel(frame: frame)
+        label.center = guideView.center
+        
+        return label
+    }
+    
     func createAnimationManager() -> AnimatorManager {
         let phases = BreathePhasesProvider().phases() ?? []
         
@@ -40,8 +50,8 @@ private extension ViewController {
             view.layer.transform = CATransform3DMakeScale(0.75, 0.75, 1)
         }
         
-        let progress = { (type: BreathePhase, progress: Float) in
-            
+        let progress = { [instructionsLabel] (phase: BreathePhase, progress: Float) in
+            instructionsLabel.updatePhase(phase, progress: Double(progress))
         }
         
         return AnimatorManager(phases: phases,

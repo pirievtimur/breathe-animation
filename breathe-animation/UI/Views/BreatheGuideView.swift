@@ -18,7 +18,7 @@ class BreatheGuideView: UIView, BreatheAnimatable, ProgressLayerDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var progressCallback: ((Float) -> Void)?
+    var progressCallback: ((Float) -> Void) = { _ in }
     
     func performAnimation(animation: CAAnimation) {
         let progressAnimation = createProgressAnimation(duration: animation.duration)
@@ -32,8 +32,7 @@ class BreatheGuideView: UIView, BreatheAnimatable, ProgressLayerDelegate {
     }
     
     func progressUpdated(progress: Float) {
-        guard let callback = progressCallback else { return }
-        callback(progress)
+        progressCallback(progress)
     }
     
     private func createProgressAnimation(duration: Double) -> CABasicAnimation {
@@ -41,6 +40,7 @@ class BreatheGuideView: UIView, BreatheAnimatable, ProgressLayerDelegate {
         progressAnimation.duration = duration
         progressAnimation.fromValue = 0.0
         progressAnimation.toValue = 1.0
+        progressAnimation.fillMode = kCAFillModeForwards
         
         return progressAnimation
     }
@@ -78,7 +78,6 @@ fileprivate final class ProgressLayer: CALayer {
     }
     
     override func draw(in ctx: CGContext) {
-        super.draw(in: ctx)
         if let delegate = progressDelegate {
             delegate.progressUpdated(progress: progress)
         }

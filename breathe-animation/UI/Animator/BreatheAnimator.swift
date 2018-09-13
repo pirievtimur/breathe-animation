@@ -3,7 +3,7 @@ import UIKit
 protocol BreatheAnimatable: class {
     func performAnimation(animation: CAAnimation)
     var animatableLayer: CALayer { get }
-    var progressCallback: ((Float) -> Void)? { get set }
+    var progressCallback: ((Float) -> Void) { get set }
 }
 
 protocol Animator: class {
@@ -27,9 +27,21 @@ class BreatheAnimator: NSObject, Animator {
          progress: ((BreathePhase, Float) -> Void)? = nil) {
         self.animatableView = animatableView
         self.breathePhase = breathePhase
+        self.animationProgress = progress
     }
     
     func startAnimating() {
+        animatableView?.progressCallback = { [breathePhase, animationProgress, animatableView] progressValue in
+            guard let progress = animationProgress else { return }
+            
+            
+            if progressValue == 1.0, let value = self.toValue {
+                animatableView?.animatableLayer.transform = value
+            }
+            
+            progress(breathePhase, progressValue)
+        }
+        
         animation = CABasicAnimation(keyPath: "transform")
         animation?.duration = breathePhase.duration
         animation?.delegate = self
@@ -45,14 +57,12 @@ class BreatheAnimator: NSObject, Animator {
         }
 
         animation?.toValue = toValue
-        
         animatableView?.performAnimation(animation: animation!)
     }
 }
 
 extension BreatheAnimator: CAAnimationDelegate {
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        
         if let transform = toValue, let handler = completionHandler {
             animatableView?.animatableLayer.transform = transform
             handler()

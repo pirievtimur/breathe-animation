@@ -34,8 +34,9 @@ class BreatheAnimator: NSObject, Animator {
         animatableView?.progressCallback = { [breathePhase, animationProgress, animatableView] progressValue in
             guard let progress = animationProgress else { return }
             
-            
-            if progressValue == 1.0, let value = self.toValue {
+            // Avoid blinking caused by reseting model layer
+            // into initial transform
+            if progressValue > 0.99, let value = self.toValue {
                 animatableView?.animatableLayer.transform = value
             }
             

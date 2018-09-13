@@ -1,6 +1,10 @@
 import UIKit
+import Foundation
 
 class InstructionsLabel: UILabel {
+    
+    var previousProgressValue: Double = 0
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -11,10 +15,24 @@ class InstructionsLabel: UILabel {
     }
     
     func updatePhase(_ phase: BreathePhase, progress: Double) {
-        let phaseName = phase.type.rawValue.uppercased()
-        let seconds = phase.duration * Double(progress)
+        if previousProgressValue == progress { return }
         
-        text = "\(phaseName)\n \(seconds)"
+        let phaseName = phase.type.rawValue.uppercased()
+        let seconds = Int(round(abs(phase.duration * Double(progress) - phase.duration)))
+        let (m,s) = secondsToMinutesSeconds(seconds: seconds)
+        let minutesString = convertValueToTimeRepresentation(value: m)
+        let secondsString = convertValueToTimeRepresentation(value: s)
+
+        text = "\(phaseName)\n\(minutesString + ":" + secondsString)"
+    }
+    
+    func convertValueToTimeRepresentation(value: Int) -> String {
+        let string = String(value)
+        return string.count > 1 ? string : "0" + string
+    }
+    
+    func secondsToMinutesSeconds(seconds: Int) -> (Int, Int) {
+        return ((seconds % 3600) / 60, (seconds % 3600) % 60)
     }
     
     required init?(coder aDecoder: NSCoder) {

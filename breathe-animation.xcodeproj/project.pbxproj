@@ -21,6 +21,8 @@
 		71CAB1E0214AA97F005D8CEB /* InstructionsLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CAB1DF214AA97F005D8CEB /* InstructionsLabel.swift */; };
 		71CAB1E3214AC84F005D8CEB /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CAB1E2214AC84F005D8CEB /* UIColor+Extensions.swift */; };
 		71CAB1E5214ACBDA005D8CEB /* BreatheButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CAB1E4214ACBDA005D8CEB /* BreatheButton.swift */; };
+		71CAB1E7214AEEB4005D8CEB /* RemainingTimeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CAB1E6214AEEB4005D8CEB /* RemainingTimeLabel.swift */; };
+		71CAB1E9214AF0D7005D8CEB /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CAB1E8214AF0D7005D8CEB /* Formatters.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		71CAB1DF214AA97F005D8CEB /* InstructionsLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsLabel.swift; sourceTree = "<group>"; };
 		71CAB1E2214AC84F005D8CEB /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		71CAB1E4214ACBDA005D8CEB /* BreatheButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreatheButton.swift; sourceTree = "<group>"; };
+		71CAB1E6214AEEB4005D8CEB /* RemainingTimeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemainingTimeLabel.swift; sourceTree = "<group>"; };
+		71CAB1E8214AF0D7005D8CEB /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +119,7 @@
 			children = (
 				71CAB1D921499E5D005D8CEB /* BreatheGuideView.swift */,
 				71CAB1DF214AA97F005D8CEB /* InstructionsLabel.swift */,
+				71CAB1E6214AEEB4005D8CEB /* RemainingTimeLabel.swift */,
 				71CAB1E4214ACBDA005D8CEB /* BreatheButton.swift */,
 			);
 			path = Views;
@@ -143,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				71CAB1E2214AC84F005D8CEB /* UIColor+Extensions.swift */,
+				71CAB1E8214AF0D7005D8CEB /* Formatters.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -223,7 +229,9 @@
 				71A6120C21495771004C28AD /* BreathePhasesProvider.swift in Sources */,
 				71A611F021494C44004C28AD /* ViewController.swift in Sources */,
 				71CAB1DA21499E5D005D8CEB /* BreatheGuideView.swift in Sources */,
+				71CAB1E7214AEEB4005D8CEB /* RemainingTimeLabel.swift in Sources */,
 				71A611EE21494C44004C28AD /* AppDelegate.swift in Sources */,
+				71CAB1E9214AF0D7005D8CEB /* Formatters.swift in Sources */,
 				71CAB1DE2149A479005D8CEB /* AnimatorManager.swift in Sources */,
 				71A6120A214954D6004C28AD /* BreathePhase.swift in Sources */,
 				71CAB1E5214ACBDA005D8CEB /* BreatheButton.swift in Sources */,

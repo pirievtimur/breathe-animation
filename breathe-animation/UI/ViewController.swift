@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     private lazy var animationManager = createAnimationManager()
     private lazy var instructionsLabel = createInstructionsLabel()
     private lazy var startBreatheButton = createButton()
+    private lazy var remainingTimeLabel = createRemainingTimeLabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,9 +22,9 @@ class ViewController: UIViewController {
     }
     
     @objc func startBreathing() {
-        updateUI(state: .breathing)
-        guideView.prepareToAnimate { [animationManager] in
-            animationManager.startAnimations()
+        guideView.prepareToAnimate { [weak self] in
+            self?.updateUI(state: .breathing)
+            self?.animationManager.startAnimations()
         }
     }
     
@@ -32,17 +33,21 @@ class ViewController: UIViewController {
         case .initial:
             startBreatheButton.isHidden = false
             instructionsLabel.isHidden = true
+            remainingTimeLabel.isHidden = true
         case .breathing:
             startBreatheButton.isHidden = true
             instructionsLabel.isHidden = false
+            remainingTimeLabel.isHidden = false
         }
     }
     
     private func setupSubviews() {
         view.addSubview(guideView)
         view.addSubview(instructionsLabel)
-        instructionsLabel.isHidden = true
         view.addSubview(startBreatheButton)
+        view.addSubview(remainingTimeLabel)
+        
+        updateUI(state: .initial)
     }
 }
 
@@ -72,7 +77,14 @@ private extension ViewController {
         return button
     }
     
-    func createAnimationManager() -> AnimatorManager {
+    func createRemainingTimeLabel() -> RemainingTimeLabel {
+        let label = RemainingTimeLabel(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+        label.center = CGPoint(x: view.frame.width / 2, y: view.frame.height - 150)
+        
+        return label
+    }
+    
+    func createAnimationManager() -> BreatheAnimationManager {
         let phases = BreathePhasesProvider().phases() ?? []
         
         let completion = { [guideView] in
@@ -80,12 +92,17 @@ private extension ViewController {
         }
         
         let progress = { [instructionsLabel] (phase: BreathePhase, progress: Float) in
-            instructionsLabel.updatePhase(phase, progress: Double(progress))
+            instructionsLabel.updatePhase(phase, progress: progress)
         }
         
-        return AnimatorManager(phases: phases,
-                               animatableView: guideView,
-                               completion: completion,
-                               progress: progress)
+        let remainingTime = { [remainingTimeLabel] (seconds: Int) in
+            remainingTimeLabel.update(seconds: seconds)
+        }
+        
+        return BreatheAnimationManager(phases: phases,
+                                       animatableView: guideView,
+                                       completion: completion,
+                                       stepProgress: progress,
+                                       remainingTime: remainingTime)
     }
 }
